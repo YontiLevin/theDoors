@@ -1,13 +1,6 @@
 import pandas as pd
 
 
-def save2datapackage(path2filesfolder, output_path):
-    from datapackage import Package
-    package = Package()
-    package.infer('/'.join([path2filesfolder, '*.csv']))
-    package.save(output_path)
-
-
 def save2disk(links, failures, parent_path):
     import os
 
@@ -36,7 +29,3 @@ def save2disk(links, failures, parent_path):
         failures_df = pd.DataFrame(fails, columns=columns)
         failures_df.to_csv('{dir}/failures/{year}.csv'.format(dir=parent_path, year=year))
 
-if __name__ == '__main__':
-    p2ff = '/home/yonti/Projects/theDoors/A.Companies_BoardMembers/data/extractions/feb24_18/full'
-    op = '/home/yonti/Projects/theDoors/A.Companies_BoardMembers/data/packages/maya_full_feb25_18.zip'
-    save2datapackage(p2ff, op)
